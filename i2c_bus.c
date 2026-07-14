@@ -62,3 +62,9 @@ i2c_master_dev_handle_t i2c_bus_get_dev(uint8_t addr7, uint32_t speed_hz)
     s_devs[s_dev_count++] = (dev_entry_t){ .addr = addr7, .speed_hz = speed_hz, .dev = dev };
     return dev;
 }
+
+esp_err_t i2c_bus_probe(uint8_t addr7, int timeout_ms)
+{
+    if (!s_bus) return ESP_ERR_INVALID_STATE;
+    return i2c_master_probe(s_bus, addr7, timeout_ms);
+}
